@@ -2,17 +2,14 @@
   <div class="articles">
     <v-container>
       <v-row>
-        <v-col lg="4" xs="12" sm="6">
-          <Card />
-        </v-col>
-        <v-col lg="4" xs="12" sm="6">
-          <Card />
-        </v-col>
-        <v-col lg="4" xs="12" sm="6">
-          <Card />
-        </v-col>
-        <v-col lg="4" xs="12" sm="6">
-          <Card />
+        <v-col
+          :key="article.id"
+          lg="4"
+          xs="12"
+          sm="6"
+          v-for="article in articles"
+        >
+          <Card :title="article.title" :description="article.description" />
         </v-col>
       </v-row>
     </v-container>
@@ -33,6 +30,10 @@ import { articlesModule } from "@/bus/articles";
   components: { Card },
 })
 export default class Articles extends Vue {
+  get articles() {
+    return articlesModule.articles;
+  }
+
   created() {
     articlesModule.loadArticles();
   }

@@ -1,13 +1,14 @@
 <template>
   <v-card :hover="true" class="mx-auto">
-    <v-img
-      src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-      height="200px"
-    ></v-img>
-
     <v-card-title>{{ title }}</v-card-title>
 
     <v-card-subtitle>{{ description }} </v-card-subtitle>
+
+    <v-divider class="mx=4"></v-divider>
+    <v-card-actions>
+      <v-btn color="red lighten-2" text> Edit </v-btn>
+      <v-btn color="red lighten-2" text> Delete </v-btn>
+    </v-card-actions>
   </v-card>
 </template>
 
@@ -16,8 +17,8 @@ import { Vue, Component, Prop } from "vue-property-decorator";
 
 @Component
 export default class Card extends Vue {
-  @Prop({ type: String, default: "Test" }) title;
-  @Prop({ type: String, default: "" }) src;
-  @Prop({ type: String, default: "test" }) description;
+  @Prop({ type: String }) title;
+  @Prop({ type: String }) src;
+  @Prop({ type: String }) description;
 }
 </script>
