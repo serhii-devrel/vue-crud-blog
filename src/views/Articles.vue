@@ -27,14 +27,14 @@ import { Vue, Component } from "vue-property-decorator";
 import Card from "@/components/Card";
 
 // Modules
-// import { articlesModule } from "@/bus/articles";
+import { articlesModule } from "@/bus/articles";
 
 @Component({
   components: { Card },
 })
 export default class Articles extends Vue {
   created() {
-    // articlesModule.loadArticles();
+    articlesModule.loadArticles();
   }
 }
 </script>
