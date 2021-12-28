@@ -2,6 +2,11 @@
   <div class="articles">
     <v-container>
       <v-row>
+        <v-col>
+          <Dialog mainButtonText="Add Article"> Test </Dialog>
+        </v-col>
+      </v-row>
+      <v-row>
         <v-col
           :key="article.id"
           lg="4"
@@ -27,12 +32,13 @@ import { Vue, Component } from "vue-property-decorator";
 
 // Components
 import Card from "@/components/Card";
+import Dialog from "@/components/Dialog";
 
 // Modules
 import { articlesModule } from "@/bus/articles";
 
 @Component({
-  components: { Card },
+  components: { Card, Dialog },
 })
 export default class Articles extends Vue {
   get articles() {
