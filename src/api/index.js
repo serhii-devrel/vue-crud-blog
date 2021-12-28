@@ -10,5 +10,12 @@ export const API = {
         },
       });
     },
+    deleteArticle(id) {
+      return RESTClient.delete(`/articles/${id}`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    },
   },
 };

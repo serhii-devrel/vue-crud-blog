@@ -9,7 +9,12 @@
           sm="6"
           v-for="article in articles"
         >
-          <Card :title="article.title" :description="article.description" />
+          <Card
+            :onEdit="() => onEdit(article.id)"
+            :onDelete="() => onDelete(article.id)"
+            :title="article.title"
+            :description="article.description"
+          />
         </v-col>
       </v-row>
     </v-container>
@@ -32,6 +37,14 @@ import { articlesModule } from "@/bus/articles";
 export default class Articles extends Vue {
   get articles() {
     return articlesModule.articles;
+  }
+
+  onDelete(id) {
+    articlesModule.deleteArticle(id);
+  }
+
+  onEdit(id) {
+    return () => id;
   }
 
   created() {

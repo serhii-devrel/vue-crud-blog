@@ -6,8 +6,8 @@
 
     <v-divider class="mx=4"></v-divider>
     <v-card-actions>
-      <v-btn color="red lighten-2" text> Edit </v-btn>
-      <v-btn color="red lighten-2" text> Delete </v-btn>
+      <v-btn @click="onEdit" text> Edit </v-btn>
+      <v-btn @click.stop="onDelete" text> Delete </v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -18,7 +18,8 @@ import { Vue, Component, Prop } from "vue-property-decorator";
 @Component
 export default class Card extends Vue {
   @Prop({ type: String }) title;
-  @Prop({ type: String }) src;
   @Prop({ type: String }) description;
+  @Prop({ type: Function, default: () => {} }) onEdit;
+  @Prop({ type: Function, default: () => {} }) onDelete;
 }
 </script>
