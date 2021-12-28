@@ -3,15 +3,15 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 
 // Views
-import Home from "../views/Home.vue";
+import Articles from "../views/Articles.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "Home",
-    component: Home,
+    name: "Articles",
+    component: Articles,
   },
   {
     path: "/about",
