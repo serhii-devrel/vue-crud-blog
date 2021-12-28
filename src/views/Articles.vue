@@ -10,8 +10,8 @@
           v-for="article in articles"
         >
           <Card
-            :onEdit="() => onEdit(article.id)"
-            :onDelete="() => onDelete(article.id)"
+            :id="article.id"
+            :onDelete="onDelete"
             :title="article.title"
             :description="article.description"
           />
@@ -41,10 +41,6 @@ export default class Articles extends Vue {
 
   onDelete(id) {
     articlesModule.deleteArticle(id);
-  }
-
-  onEdit(id) {
-    return () => id;
   }
 
   created() {
