@@ -27,10 +27,19 @@
         >
           <Card
             :id="article.id"
-            :onDelete="onDelete"
             :title="article.title"
             :description="article.description"
-          />
+          >
+            <v-btn @click="onDelete(article.id)"> Delete </v-btn>
+            <router-link
+              :to="{
+                name: 'Edit Article',
+                params: { id: article.id },
+              }"
+            >
+              <v-btn> Edit </v-btn>
+            </router-link>
+          </Card>
         </v-col>
       </v-row>
     </v-container>

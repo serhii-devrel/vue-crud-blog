@@ -6,8 +6,7 @@
 
     <v-divider class="mx=4"></v-divider>
     <v-card-actions>
-      <v-btn @click="onEdit" text> Edit </v-btn>
-      <v-btn @click.stop="onDelete(id)" text> Delete </v-btn>
+      <slot></slot>
     </v-card-actions>
   </v-card>
 </template>
@@ -21,7 +20,6 @@ export default class Card extends Vue {
   @Prop({ type: String }) id;
   @Prop({ type: String }) title;
   @Prop({ type: String }) description;
-  @Prop({ type: Function, default: () => {} }) onEdit;
   @Prop({ type: Function, default: () => {} }) onDelete;
 }
 </script>

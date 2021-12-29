@@ -24,5 +24,12 @@ export const API = {
         },
       });
     },
+    updateArticle(article) {
+      return RESTClient.put(`/articles/${article.id}`, article, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    },
   },
 };
