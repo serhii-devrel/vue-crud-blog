@@ -14,7 +14,7 @@
           <v-btn text @click="onClose">
             {{ cancelButtonText }}
           </v-btn>
-          <v-btn text>
+          <v-btn text @click.stop="onSubmit">
             {{ submitButtonText }}
           </v-btn>
         </v-card-actions>
@@ -32,11 +32,16 @@ export default class Dialog extends Vue {
   @Prop({ type: String, default: "Add" }) mainButtonText;
   @Prop({ type: String, default: "Cancel" }) cancelButtonText;
   @Prop({ type: String, default: "Submit" }) submitButtonText;
+  @Prop({ type: Function, default: () => {} }) submitHandler;
 
   dialog = false;
 
   onClose() {
     this.dialog = false;
+  }
+
+  onSubmit() {
+    this.$emit("onSubmit", this.onClose);
   }
 }
 </script>

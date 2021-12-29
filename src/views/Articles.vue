@@ -3,7 +3,18 @@
     <v-container>
       <v-row>
         <v-col>
-          <Dialog mainButtonText="Add Article"> Test </Dialog>
+          <Dialog
+            mainButtonText="Add Article"
+            submitButtonText="Add Article"
+            @onSubmit="onAdd"
+          >
+            <v-text-field v-model="title" label="Title" required></v-text-field>
+            <v-text-field
+              v-model="description"
+              label="Description"
+              required
+            ></v-text-field>
+          </Dialog>
         </v-col>
       </v-row>
       <v-row>
@@ -41,8 +52,22 @@ import { articlesModule } from "@/bus/articles";
   components: { Card, Dialog },
 })
 export default class Articles extends Vue {
+  title = "";
+  description = "";
+
   get articles() {
     return articlesModule.articles;
+  }
+
+  onAdd(onCloseDialog) {
+    if (!this.title || !this.description) return;
+    articlesModule.addArticle({
+      title: this.title,
+      description: this.description,
+    });
+    onCloseDialog();
+    this.title = "";
+    this.description = "";
   }
 
   onDelete(id) {

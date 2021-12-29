@@ -22,5 +22,11 @@ class ArticlesModule extends VuexModule {
     await API.articles.deleteArticle(id);
     await this.loadArticles();
   }
+
+  @Action
+  async addArticle(article) {
+    await API.articles.addArticle(article);
+    await this.loadArticles();
+  }
 }
 export const articlesModule = new ArticlesModule({ store, name: "articles" });

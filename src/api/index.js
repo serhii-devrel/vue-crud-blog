@@ -17,5 +17,12 @@ export const API = {
         },
       });
     },
+    addArticle(article) {
+      return RESTClient.post("/articles", article, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    },
   },
 };
