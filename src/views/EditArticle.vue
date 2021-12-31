@@ -1,13 +1,21 @@
 <template>
   <div class="edit-article">
-    <h1>Edit Article</h1>
-    <v-text-field v-model="title" label="Title" required></v-text-field>
-    <v-text-field
-      v-model="description"
-      label="Description"
-      required
-    ></v-text-field>
-    <v-btn @click="onUpdate">Update Article</v-btn>
+    <v-container>
+      <h1>Edit Article</h1>
+      <v-row>
+        <v-col xs="12">
+          <v-text-field v-model="title" label="Title" required></v-text-field>
+          <v-text-field
+            v-model="description"
+            label="Description"
+            required
+          ></v-text-field>
+          <v-btn color="green lighten-3" @click="onUpdate"
+            >Update Article</v-btn
+          >
+        </v-col>
+      </v-row>
+    </v-container>
   </div>
 </template>
 

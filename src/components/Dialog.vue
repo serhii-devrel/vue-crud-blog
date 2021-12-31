@@ -8,13 +8,19 @@
       </template>
 
       <v-card>
-        <slot></slot>
+        <v-container>
+          <v-row>
+            <v-col xs="12">
+              <slot></slot>
+            </v-col>
+          </v-row>
+        </v-container>
 
-        <v-card-actions>
-          <v-btn text @click="onClose">
+        <v-card-actions class="buttons">
+          <v-btn text @click="onClose" color="black">
             {{ cancelButtonText }}
           </v-btn>
-          <v-btn text @click.stop="onSubmit">
+          <v-btn text @click.stop="onSubmit" color="green">
             {{ submitButtonText }}
           </v-btn>
         </v-card-actions>
@@ -25,7 +31,7 @@
 
 <script>
 // Core
-import { Vue, Component, Prop } from "vue-property-decorator";
+import { Vue, Component, Prop, Emit } from "vue-property-decorator";
 
 @Component
 export default class Dialog extends Vue {
@@ -40,8 +46,17 @@ export default class Dialog extends Vue {
     this.dialog = false;
   }
 
+  @Emit("onSubmit")
   onSubmit() {
-    this.$emit("onSubmit", this.onClose);
+    return this.onClose;
   }
 }
 </script>
+
+<style scoped>
+.buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+</style>

@@ -30,15 +30,20 @@
             :title="article.title"
             :description="article.description"
           >
-            <v-btn @click="onDelete(article.id)"> Delete </v-btn>
-            <router-link
-              :to="{
-                name: 'Edit Article',
-                params: { id: article.id },
-              }"
-            >
-              <v-btn> Edit </v-btn>
-            </router-link>
+            <div class="buttons">
+              <v-btn color="red lighten-3" @click="onDelete(article.id)">
+                Delete
+              </v-btn>
+              <v-btn
+                color="purple lighten-3"
+                :to="{
+                  name: 'Edit Article',
+                  params: { id: article.id },
+                }"
+              >
+                Edit
+              </v-btn>
+            </div>
           </Card>
         </v-col>
       </v-row>
@@ -88,3 +93,11 @@ export default class Articles extends Vue {
   }
 }
 </script>
+
+<style scoped>
+.buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+</style>
