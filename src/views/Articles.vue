@@ -3,17 +3,21 @@
     <v-container>
       <v-row>
         <v-col>
-          <Dialog
-            mainButtonText="Add Article"
-            submitButtonText="Add Article"
-            @onSubmit="onAdd"
-          >
+          <Dialog ref="dialog" mainButtonText="Add Article">
             <v-text-field v-model="title" label="Title" required></v-text-field>
             <v-text-field
               v-model="description"
               label="Description"
               required
             ></v-text-field>
+            <template #buttons>
+              <v-card-actions class="buttons">
+                <v-btn text @click="onClose" color="black"> Cancel </v-btn>
+                <v-btn text @click.stop="onAdd" color="green">
+                  Add Article
+                </v-btn>
+              </v-card-actions>
+            </template>
           </Dialog>
         </v-col>
       </v-row>
@@ -73,15 +77,18 @@ export default class Articles extends Vue {
     return articlesModule.articles;
   }
 
-  onAdd(onCloseDialog) {
+  onAdd() {
     if (!this.title || !this.description) return;
     articlesModule.addArticle({
       title: this.title,
       description: this.description,
     });
-    onCloseDialog();
-    this.title = "";
+    this.$refs.dialog.close();
     this.description = "";
+  }
+
+  onClose() {
+    this.$refs.dialog.close();
   }
 
   onDelete(id) {

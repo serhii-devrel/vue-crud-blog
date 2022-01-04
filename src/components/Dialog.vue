@@ -15,15 +15,7 @@
             </v-col>
           </v-row>
         </v-container>
-
-        <v-card-actions class="buttons">
-          <v-btn text @click="onClose" color="black">
-            {{ cancelButtonText }}
-          </v-btn>
-          <v-btn text @click.stop="onSubmit" color="green">
-            {{ submitButtonText }}
-          </v-btn>
-        </v-card-actions>
+        <slot name="buttons"></slot>
       </v-card>
     </v-dialog>
   </div>
@@ -31,32 +23,16 @@
 
 <script>
 // Core
-import { Vue, Component, Prop, Emit } from "vue-property-decorator";
+import { Vue, Component, Prop } from "vue-property-decorator";
 
 @Component
 export default class Dialog extends Vue {
   @Prop({ type: String, default: "Add" }) mainButtonText;
-  @Prop({ type: String, default: "Cancel" }) cancelButtonText;
-  @Prop({ type: String, default: "Submit" }) submitButtonText;
-  @Prop({ type: Function, default: () => {} }) submitHandler;
 
   dialog = false;
 
-  onClose() {
+  close() {
     this.dialog = false;
-  }
-
-  @Emit("onSubmit")
-  onSubmit() {
-    return this.onClose;
   }
 }
 </script>
-
-<style scoped>
-.buttons {
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-}
-</style>
